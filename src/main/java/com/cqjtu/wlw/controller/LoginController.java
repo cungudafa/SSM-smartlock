@@ -9,6 +9,10 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/")
 public class LoginController {
+    @RequestMapping("login")
+    public String login(){
+        return "homepage";
+    }
     @RequestMapping(value = "dologin")
     public String login(Login a, HttpSession session) {
         System.out.println("用户:" + a.getId() + "\t密码：" + a.getPassword());
