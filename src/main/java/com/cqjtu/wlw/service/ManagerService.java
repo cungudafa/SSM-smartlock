@@ -1,6 +1,6 @@
 package com.cqjtu.wlw.service;
 
-public class ManagerService {
+public interface ManagerService {
 
 
 }

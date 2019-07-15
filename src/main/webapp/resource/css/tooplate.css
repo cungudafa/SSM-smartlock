@@ -574,7 +574,7 @@ footer a { color: white; }
   z-index: 2;
   visibility: hidden;
   opacity: 0;
-  overflow:hidden;
+  overflow: hiden;
   -webkit-transition: .64s ease-in-out;
   transition: .64s ease-in-out;
 }

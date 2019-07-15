@@ -51,4 +51,13 @@ public class ClientServiceImpl implements ClientService {
         }
         return clientDao.getClientInfos(clientInfo);
     }
+
+    @Override
+    public ClientInfo getClientById(ClientInfo clientInfo) {
+        List<ClientInfo> clients = clientDao.getClientInfos(clientInfo);
+        if(clients != null && clients.size() == 1){
+            return clients.get(0);
+        }
+        return null;
+    }
 }

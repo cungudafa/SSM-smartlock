@@ -9,24 +9,30 @@ public interface ClientService {
      * client注册
      * @param clientInfo
      */
-    public void regClientInfo(ClientInfo clientInfo);
+    void regClientInfo(ClientInfo clientInfo);
 
     /**
      * 学生注销
      * @param clientInfo
      */
-    public void delClientInfo(ClientInfo clientInfo);
+    void delClientInfo(ClientInfo clientInfo);
 
     /**
      * 学生信息更新
      * @param clientInfo
      */
-    public void updateClientInfo(ClientInfo clientInfo);
+    void updateClientInfo(ClientInfo clientInfo);
 
     /**
-     * 根据条件查询学生信息
+     * 根据条件查询多条学生信息
      * @param clientInfo
      * @return
      */
-    public List<ClientInfo> getClientInfos(ClientInfo clientInfo);
+    List<ClientInfo> getClientInfos(ClientInfo clientInfo);
+    /**
+     * 根据id查询记录
+     * @param clientInfo
+     * @return
+     */
+    ClientInfo getClientById(ClientInfo clientInfo);
 }

@@ -3,6 +3,7 @@ package com.cqjtu.wlw.pojo;
 public class ClientInfo {
     private Integer clientId;
     private String clientName;
+    private String clientPassword;
     private String clientSex;
     private String clientPhone;
     private String clientAddr;
@@ -73,5 +74,13 @@ public class ClientInfo {
 
     public void setLockInfo(LockInfo lockInfo) {
         this.lockInfo = lockInfo;
+    }
+
+    public String getClientPassword() {
+        return clientPassword;
+    }
+
+    public void setClientPassword(String clientPassword) {
+        this.clientPassword = clientPassword;
     }
 }

@@ -2,9 +2,7 @@ package com.cqjtu.wlw.pojo;
 
 public class Login {
     private Integer id;
-    private String name;
     private String password;
-    private String identity;
 
     public Integer getId() {
         return id;
@@ -22,20 +20,4 @@ public class Login {
         this.password = password;
     }
 
-    public String getIdentity() {
-        return identity;
-    }
-
-    public void setIdentity(String identity) {
-        this.identity = identity;
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
