@@ -1,7 +1,11 @@
 <!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
+
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Monster | HOMEPAGE</title>
@@ -15,17 +19,17 @@
 		<!-- Font awesome css -->
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-		<link rel="stylesheet" href="resource/css/animate.css">
-		<link rel="stylesheet" href="resource/css/linecons.css">
+		<link rel="stylesheet" href="css/animate.css">
+		<link rel="stylesheet" href="css/linecons.css">
 
-		<link rel="stylesheet" href="resource/inc/strip/css/strip.css">
+		<link rel="stylesheet" href="inc/strip/css/strip.css">
 
 		<!-- Owl carousel 2 css -->
-		<link rel="stylesheet" href="resource/css/owl.carousel.css">
+		<link rel="stylesheet" href="css/owl.carousel.css">
 
 		<!-- Custom CSS -->
-		<link rel="stylesheet" href="resource/css/style.css">
-		<link rel="stylesheet" href="resource/css/responsive.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/responsive.css">
 
 		<!-- 警告弹窗 -->
 		<script src="${basePath }resource/js/sweet-alert.min.js"></script>
@@ -119,29 +123,30 @@
 									</div>
 									<div class="popup__text">
 										<h1 class="text-center">登 录</h1>
-										<form class="form-group" action="">
+										<form class="form-group" action="user/dologin.d" method="post">
 											<div class="form-group">
-												<label for="">账户</label>
-												<input class="form-control" type="text" placeholder="">
+												<label >账户</label>
+												<input name="Id" class="form-control" type="text" placeholder="">
 											</div>
 											<div class="form-group">
-												<label for="">密码</label>
-												<input class="form-control" type="password" placeholder="">
+												<label >密码</label>
+												<input name="Password" class="form-control" type="password" placeholder="">
 											</div>
 											<div class="form-group">
 												<div class="form-check">
 													<div class="row">
+														<input name="identity" value="100" type="hidden">
 														<div class="col-sm-4">
-															<input type="radio" class="form-check-input" id="materialChecked" name="materialExampleRadios" checked>
-															<label class="form-check-label" for="materialChecked">用户</label>
+															<input type="radio" class="form-check-input" vlaue="0" name="clientChecked" checked>
+															<label class="form-check-label">用户</label>
 														</div>
 														<div class="col-sm-4">
-															<input type="radio" class="form-check-input" id="materialUnchecked" name="materialExampleRadios">
-															<label class="form-check-label" for="materialUnchecked">维护人员</label>
+															<input type="radio" class="form-check-input" value="1" name="workerCkecked">
+															<label class="form-check-label">维护人员</label>
 														</div>
 														<div class="col-sm-4">
-															<input type="radio" class="form-check-input" id="materialChecked" name="materialExampleRadios" checked>
-															<label class="form-check-label" for="materialUnchecked">管理人员</label>
+															<input type="radio" class="form-check-input" value="2" name="managerChecked">
+															<label class="form-check-label">管理人员</label>
 														</div>
 													</div>
 												</div>
@@ -174,21 +179,21 @@
 									</div>
 									<div class="popup__text">
 										<h1 class="text-center">注 册</h1>
-										<form class="form-group" action="">
+										<form class="form-group" action="client/register.d" method="post">
 											<div class="form-group">
-												<label for="">账户</label>
+												<label id="clientId">账户</label>
 												<input class="form-control" type="text" placeholder="6-15位字母或数字">
 											</div>
 											<div class="form-group">
-												<label for="">密码</label>
+												<label id="Password">密码</label>
 												<input class="form-control" type="password" placeholder="至少6位字母或数字">
 											</div>
 											<div class="form-group">
-												<label for="">再次输入密码</label>
+												<label id="Password2">再次输入密码</label>
 												<input class="form-control" type="password" placeholder="至少6位字母或数字">
 											</div>
 											<div class="form-group">
-												<label for="">门锁id</label>
+												<label id="lockId">门锁id</label>
 												<input class="form-control" type="email" placeholder="例如:EcshTT24">
 											</div>
 
@@ -568,7 +573,7 @@
 					<div class="col-sm-3 wow zoomIn">
 						<div class="single-team">
 							<img src="img/team_4.jpg" alt="">
-							<h2>诺木叶波</h2>
+							<h2>诺木业波</h2>
 							<p>Manages Money</p>
 						</div>
 					</div>

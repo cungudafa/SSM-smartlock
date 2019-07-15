@@ -7,28 +7,47 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/user")
 public class LoginController {
-    @RequestMapping("login")
+    @RequestMapping("/login")
     public String login(){
         return "homepage";
     }
-    @RequestMapping(value = "dologin")
-    public String login(Login a, HttpSession session) {
-        System.out.println("用户:" + a.getId() + "\t密码：" + a.getPassword());
-        session.setAttribute("user", a);
+    /**
+     * 用户注册
+     * @return
+     */
+    @RequestMapping("/register")
+    public String register(){
+        //add
+        return "homepage";
+    }
 
-        if (a.getId() == 123456) {
+    /**
+     * 登录跳转
+     * 0：用户
+     * 1：维修人员
+     * 2：管理员
+     * @param user
+     * @param session
+     * @return
+     */
+    @RequestMapping(value = "/dologin")
+    public String login(Login user, HttpSession session) {
+        System.out.println("用户:" + user.getId() + "\t密码：" + user.getPassword());
+        session.setAttribute("user", user);
+
+        if (user.getId() == 0) {
             //check密码
             return "manager";
         }
-        if (a.getId() == 10000) {
+        if (user.getId() == 2) {
             return "protect";
         }
-        if (a.getId() == 1) {
+        if (user.getId() == 1) {
             return "client";
         }else {
-            return "/homepage.html";
+            return "homepage";
         }
     }
 

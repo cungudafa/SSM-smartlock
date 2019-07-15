@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%
@@ -18,5 +19,18 @@
     <input type="text" name="Password">
     <button type="submit">登陆</button>
 </form>
+<h3>学生信息</h3>
+<table>
+    <tr>
+        <th>姓名</th>
+        <th>电话</th>
+    </tr>
+    <c:forEach items="${clients }" var="s">
+        <tr>
+            <td>${s.clientName }</td>
+            <td>${s.clientPhone }</td>
+        </tr>
+    </c:forEach>
+</table>
 </body>
 </html>

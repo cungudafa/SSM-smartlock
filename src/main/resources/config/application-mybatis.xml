@@ -23,7 +23,7 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		<property name="mapperLocations"
 			value="classpath:com/cqjtu/wlw/dao/*.xml"></property>
 		<property name="typeAliasesPackage"
-			value="com.cungudafa.spingmvc01.bean"></property>
+			value="com.cqjtu.wlw.pojo"></property>
 	</bean>
 
 	<!-- 扫描包 -->
