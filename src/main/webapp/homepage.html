@@ -16,21 +16,21 @@
 		<!-- Font awesome css -->
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-		<link rel="stylesheet" href="resource/css/animate.css">
-		<link rel="stylesheet" href="resource/css/linecons.css">
+		<link rel="stylesheet" href="css/animate.css">
+		<link rel="stylesheet" href="css/linecons.css">
 
-		<link rel="stylesheet" href="resource/inc/strip/css/strip.css">
+		<link rel="stylesheet" href="inc/strip/css/strip.css">
 
 		<!-- Owl carousel 2 css -->
-		<link rel="stylesheet" href="resource/css/owl.carousel.css">
+		<link rel="stylesheet" href="css/owl.carousel.css">
 
 		<!-- Custom CSS -->
-		<link rel="stylesheet" href="resource/css/style.css">
-		<link rel="stylesheet" href="resource/css/responsive.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/responsive.css">
 
 		<!-- 警告弹窗 -->
-		<script src="resource/js/sweet-alert.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="resource/css/sweet-alert.css">
+		<script src="${basePath }resource/js/sweet-alert.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="${basePath }resource/css/sweet-alert.css">
 
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
 		<script type="text/javascript">
@@ -81,7 +81,6 @@
         			window.location.href="#face";
 				}
 		</script>
-
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
@@ -89,8 +88,6 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 	</head>
-
-
 
 	<body>
 		<header class="header">
@@ -118,53 +115,55 @@
 									</div>
 									<div class="popup__text">
 										<h1 class="text-center">登 录</h1>
-										<form class="form-group" action="user/dologin.d" method="post">
+										<form class="form-group" action="user/login.d" method="post">
 											<div class="form-group">
 												<label >账户</label>
-												<input name="Id" class="form-control" type="text" placeholder="">
+												<input name="UserId" class="form-control" type="text" placeholder="">
 											</div>
 											<div class="form-group">
 												<label >密码</label>
-												<input name="Password" class="form-control" type="password" placeholder="">
+												<input name="UserPassword" class="form-control" type="password" placeholder="">
 											</div>
 											<div class="form-group">
 												<div class="form-check">
 													<div class="row">
-														<input name="identity" value="100" type="hidden">
 														<div class="col-sm-4">
-															<input type="radio" class="form-check-input" vlaue="0" name="clientChecked" checked>
+															<input type="radio" name="browser" onclick="displayResult(this.value)" value="client">
 															<label class="form-check-label">用户</label>
 														</div>
 														<div class="col-sm-4">
-															<input type="radio" class="form-check-input" value="1" name="workerCkecked">
+															<input type="radio" name="browser" onclick="displayResult(this.value)" value="protect">
 															<label class="form-check-label">维护人员</label>
 														</div>
 														<div class="col-sm-4">
-															<input type="radio" class="form-check-input" value="2" name="managerChecked">
+															<input type="radio" name="browser" onclick="displayResult(this.value)" value="manager">
 															<label class="form-check-label">管理人员</label>
 														</div>
+														<input id="identity" name="UserIdentity" type="hidden">
 													</div>
 												</div>
-
 											</div>
-
-
 											</br>
 											<div class="row">
 												<div class="col-sm-7">
 													<a href="#regpopup" class="button">还没有账号？点我注册</a>
 												</div>
 												<div class="col-sm-5">
-													<button class="btn btn-primary" type="submit">登录</button>&nbsp;
+													<button id="btn1" class="btn btn-primary" type="submit">登录</button>&nbsp;
 													<button class="btn btn-danger" data-dismiss="modal">取消</button>
 												</div>
 											</div>
-
 										</form>
+										<script>
+											function displayResult(browser){
+												document.getElementById("identity").value=browser
+											}
+										</script>
 									</div>
 									<a class="popup__close" href="#">X</a>
 								</div>
 							</div>
+
 
 							<!--  注册弹窗  -->
 							<div class="popup" id="regpopup">
@@ -176,8 +175,8 @@
 										<h1 class="text-center">注 册</h1>
 										<form class="form-group" action="client/register.d" method="post">
 											<div class="form-group">
-												<label >账户</label>
-												<input id="clientId" class="form-control" type="text" placeholder="6-15位字母或数字">
+												<label id="clientId">账户</label>
+												<input class="form-control" type="text" placeholder="6-15位字母或数字">
 											</div>
 											<div class="form-group">
 												<label id="Password">密码</label>

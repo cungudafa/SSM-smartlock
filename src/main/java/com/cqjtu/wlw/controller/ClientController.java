@@ -15,8 +15,8 @@ import java.util.List;
 @RequestMapping("/client")
 public class ClientController {
 
-    @Autowired//自动装配，将ClientInfoService接口实现的类自动注入进来
-    private ClientService clientInfoService;
+    @Autowired//自动装配，将ClientService接口实现的类自动注入进来
+    private ClientService clientService;
 
     /**
      * 处理用户注册的请求
@@ -27,7 +27,7 @@ public class ClientController {
     public String doReg(ClientInfo clientInfo){
         System.out.println("执行ClientInfoController.doReg...");
         //获取前端的输入
-        clientInfoService.regClientInfo(clientInfo);
+        clientService.regClientInfo(clientInfo);
         return "client";
     }
     /**
@@ -37,7 +37,7 @@ public class ClientController {
      */
     @RequestMapping("/dodelete")//.....client/dodelete.d?clientId=2
     public String doDelete(ClientInfo clientInfo){
-        clientInfoService.delClientInfo(clientInfo);
+        clientService.delClientInfo(clientInfo);
         return "client";
     }
 
@@ -48,18 +48,18 @@ public class ClientController {
      */
     @RequestMapping("/doupdate")
     public String doUpdate(ClientInfo clientInfo){
-        clientInfoService.updateClientInfo(clientInfo);
+        clientService.updateClientInfo(clientInfo);
         return "client";
     }
     /**
-     * 处理查询单个教师信息的请求
+     * 处理查询单个客户信息的请求
      * @param clientInfo
      * @param request
      * @return
      */
     @RequestMapping("/show")//...client/show?clientId=1
     public @ResponseBody ClientInfo show(ClientInfo clientInfo, HttpServletRequest request){
-        clientInfo = clientInfoService.getClientById(clientInfo);
+        clientInfo = clientService.getClientById(clientInfo);
         request.setAttribute("client", clientInfo);
         System.out.println(clientInfo);
         return clientInfo;
@@ -72,7 +72,7 @@ public class ClientController {
      */
     @RequestMapping("/list")//...client/list.d?clientId=1
     public String list(ClientInfo clientInfo, HttpSession session){
-        List<ClientInfo> list = clientInfoService.getClientInfos(clientInfo);
+        List<ClientInfo> list = clientService.getClientInfos(clientInfo);
         session.setAttribute("clients", list);
         System.out.println(list);
         return "client";

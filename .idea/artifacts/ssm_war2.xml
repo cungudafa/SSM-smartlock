@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="ssm:war2">
-    <output-path>D:/大三Junior（下）/实习</output-path>
-    <root id="archive" name="ssm_war.war">
-      <element id="artifact" artifact-name="ssm:war exploded" />
-    </root>
-  </artifact>
-</component>
