@@ -4,7 +4,7 @@ public class FamilyInfo {
     private Integer memberId;
     private String memberName;
     private String memberPhoto;
-    private Integer clientId;
+    private String clientId;
 
     private ClientInfo clientInfo;
 
@@ -32,19 +32,20 @@ public class FamilyInfo {
         this.memberPhoto = memberPhoto;
     }
 
-    public Integer getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(Integer clientId) {
-        this.clientId = clientId;
-    }
-
     public ClientInfo getClientInfo() {
         return clientInfo;
     }
 
     public void setClientInfo(ClientInfo clientInfo) {
         this.clientInfo = clientInfo;
+    }
+
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
     }
 }

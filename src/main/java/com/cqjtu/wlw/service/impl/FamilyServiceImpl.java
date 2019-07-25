@@ -26,7 +26,6 @@ public class FamilyServiceImpl implements FamilyService {
     @Override
     public void delFamilyInfo(FamilyInfo FamilyInfo) {
         familyDao.deleteFamilyInfo(FamilyInfo);
-
     }
 
     @Override
@@ -47,5 +46,22 @@ public class FamilyServiceImpl implements FamilyService {
             familyInfo.setMemberPhoto("%" + familyInfo.getMemberPhoto() + "%");
         }
         return familyDao.getFamilyInfos(familyInfo);
+    }
+
+
+    @Override
+    public List<FamilyInfo> getFamilyByClientId(FamilyInfo familyInfo) {
+
+        List<FamilyInfo> list=familyDao.getFamilyInfosbyClientId(familyInfo);
+        if(list.size()==0)
+        {
+            System.out.println("无成员信息");
+            return null;
+        }
+        else
+        {
+            System.out.println("返回成员信息");
+            return  list;
+        }
     }
 }

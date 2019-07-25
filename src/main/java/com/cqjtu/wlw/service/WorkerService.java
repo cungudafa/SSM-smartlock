@@ -18,7 +18,7 @@ public interface WorkerService {
     /**
      * 学生信息更新
      */
-    void updateWorkerInfo(WorkerInfo workerInfo);
+    WorkerInfo updateWorkerInfo(WorkerInfo workerInfo);
 
     /**
      * 根据条件查询多条学生信息
@@ -28,4 +28,10 @@ public interface WorkerService {
      * 根据id查询记录
      */
     WorkerInfo getWorkerById(WorkerInfo workerInfo);
+    /**
+     * 用于登录
+     */
+    WorkerInfo getWorkerByWorkerId(WorkerInfo workerInfo);
+
+    List<WorkerInfo> getAllWorkers();
 }

@@ -23,4 +23,12 @@ public interface WorkerDao {
      */
     List<WorkerInfo> getWorkerInfos(WorkerInfo workerInfo);
 
+    List<WorkerInfo> getWorkers();
+
+    /**
+     * login
+     * @param workerInfo
+     * @return
+     */
+    WorkerInfo getWorkerByWorkerId(WorkerInfo workerInfo);
 }

@@ -23,14 +23,15 @@ public class WorkerServiceImpl implements WorkerService {
     }
 
     @Override
-    public void delWorkerInfo(WorkerInfo WorkerInfo) {
-        workerDao.deleteWorkerInfo(WorkerInfo);
+    public void delWorkerInfo(WorkerInfo workerInfo) {
+        workerDao.deleteWorkerInfo(workerInfo);
 
     }
 
     @Override
-    public void updateWorkerInfo(WorkerInfo WorkerInfo) {
-        workerDao.updateWorkerInfo(WorkerInfo);
+    public WorkerInfo updateWorkerInfo(WorkerInfo workerInfo) {
+        workerDao.updateWorkerInfo(workerInfo);
+        return workerDao.getWorkerByWorkerId(workerInfo);
     }
     /**
      * 张	--》   %张%
@@ -38,26 +39,41 @@ public class WorkerServiceImpl implements WorkerService {
      * @return
      */
     @Override
-    public List<WorkerInfo> getWorkerInfos(WorkerInfo WorkerInfo) {
-        if(WorkerInfo.getWorkerName()!= null &&!WorkerInfo.getWorkerName().equals("")){
-            WorkerInfo.setWorkerName("%" + WorkerInfo.getWorkerName() + "%");
+    public List<WorkerInfo> getWorkerInfos(WorkerInfo workerInfo) {
+        if(workerInfo.getWorkerName()!= null &&!workerInfo.getWorkerName().equals("")){
+            workerInfo.setWorkerName("%" + workerInfo.getWorkerName() + "%");
         }
-        if(WorkerInfo.getWorkerAddr() != null &&!WorkerInfo.getWorkerAddr().equals("")){
-            WorkerInfo.setWorkerAddr("%" + WorkerInfo.getWorkerAddr() + "%");
+        if(workerInfo.getWorkerAddr() != null &&!workerInfo.getWorkerAddr().equals("")){
+            workerInfo.setWorkerAddr("%" + workerInfo.getWorkerAddr() + "%");
         }
-        if(WorkerInfo.getWorkerPhone() != null &&
-                !WorkerInfo.getWorkerPhone().equals("")){
-            WorkerInfo.setWorkerPhone("%" + WorkerInfo.getWorkerPhone() + "%");
+        if(workerInfo.getWorkerPhone() != null &&
+                !workerInfo.getWorkerPhone().equals("")){
+            workerInfo.setWorkerPhone("%" +workerInfo.getWorkerPhone() + "%");
         }
-        return workerDao.getWorkerInfos(WorkerInfo);
+        return workerDao.getWorkerInfos(workerInfo);
     }
 
     @Override
-    public WorkerInfo getWorkerById(WorkerInfo WorkerInfo) {
-        List<WorkerInfo> Workers = workerDao.getWorkerInfos(WorkerInfo);
-        if(Workers != null && Workers.size() == 1){
-            return Workers.get(0);
+    public WorkerInfo getWorkerById(WorkerInfo workerInfo) {
+        List<WorkerInfo> workers = workerDao.getWorkerInfos(workerInfo);
+        if(workers != null && workers.size() == 1){
+            return workers.get(0);
         }
         return null;
+    }
+
+    /**
+     * login
+     */
+    @Override
+    public WorkerInfo getWorkerByWorkerId(WorkerInfo workerInfo){
+        return workerDao.getWorkerByWorkerId(workerInfo);
+    }
+
+    @Override
+    public List<WorkerInfo> getAllWorkers(){
+        List<WorkerInfo> list = workerDao.getWorkers();
+        System.out.println(list.get(0).getWorkerName());
+        return list;
     }
 }

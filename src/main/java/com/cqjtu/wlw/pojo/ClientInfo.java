@@ -1,7 +1,9 @@
 package com.cqjtu.wlw.pojo;
 
+import java.util.Set;
+
 public class ClientInfo {
-    private Integer clientId;
+    private String clientId;
     private String clientName;
     private String clientPassword;
     private String clientSex;
@@ -12,13 +14,17 @@ public class ClientInfo {
 
     private LockInfo lockInfo;
 
-    public Integer getClientId() {
-        return clientId;
-    }
+    /**
+     * 一个户主可对应多个维修记录
+     */
+    private Set<RepairInfo> repairInfos;
 
-    public void setClientId(Integer clientId) {
-        this.clientId = clientId;
-    }
+
+    /**
+     * 一个户主下有多个家庭成员
+     */
+    private Set<FamilyInfo> familyInfos;
+
 
     public String getClientName() {
         return clientName;
@@ -82,5 +88,30 @@ public class ClientInfo {
 
     public void setClientPassword(String clientPassword) {
         this.clientPassword = clientPassword;
+    }
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
+    }
+
+
+    public Set<FamilyInfo> getFamilyInfos() {
+        return familyInfos;
+    }
+
+    public void setFamilyInfos(Set<FamilyInfo> familyInfos) {
+        this.familyInfos = familyInfos;
+    }
+
+    public Set<RepairInfo> getRepairInfos() {
+        return repairInfos;
+    }
+
+    public void setRepairInfos(Set<RepairInfo> repairInfos) {
+        this.repairInfos = repairInfos;
     }
 }
