@@ -1,671 +1,1062 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Constructive HTML Template</title>
+	<title>MONSTER | MANAGER</title>
 
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
-		<!-- Google web font "Open Sans" -->
-		<link rel="stylesheet" href="css/fontawesome-all.min.css">
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/magnific-popup.css" />
-		<link rel="stylesheet" type="text/css" href="slick/slick.css" />
-		<link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
-		<link rel="stylesheet" href="css/tooplate-style.css">
-		<!-- unpkg视频播放 -->
-		<link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+	<!-- Google web font "Open Sans" -->
+	<link rel="stylesheet" href="../css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="../css/bootstrap1.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/magnific-popup.css" />
+	<link rel="stylesheet" type="text/css" href="../slick/slick.css" />
+	<link rel="stylesheet" type="text/css" href="../slick/slick-theme.css" />
+	<link rel="stylesheet" href="../css/tooplate-style.css">
+	<!-- 警告弹窗 -->
+	<link rel="stylesheet" type="text/css" href="../css/sweet-alert.css">
+	<!-- unpkg视频播放 -->
+	<link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
 
-		<script src="https://unpkg.com/video.js/dist/video.js"></script>
-		<script>
-			var renderPage = true;
-		</script>
+	<script src="https://unpkg.com/video.js/dist/video.js"></script>
+	<script>
+		var renderPage = true;
+	</script>
+	<!--echarts图表-->
+	<script type="text/javascript" src='../js/echarts.simple.min.js'></script>
 
-	</head>
+	<style>
+		.white_content {
+			border-radius: 1.25rem;
+			display: none;
+			position: absolute;
+			width: 50%;
+			height: 50%;
+			padding: 10px;
+			background-color: rgba(0,0,0,0.65);
+			z-index: 1002;
+			overflow: auto;
+		}
+	</style>
+
+</head>
 
 
-	<body>
-		<!-- Loader -->
-		<div id="loader-wrapper">
-			<div id="loader"></div>
-			<div class="loader-section section-left"></div>
-			<div class="loader-section section-right"></div>
+
+
+<body>
+<!-- Loader -->
+<div id="loader-wrapper">
+	<div id="loader"></div>
+	<div class="loader-section section-left"></div>
+	<div class="loader-section section-right"></div>
+</div>
+
+
+<a class="button" style="float: right;font-size:20px;color:white" href="../homepage.html">back</a>
+<!-- Page Content -->
+<div class="container-fluid tm-main">
+	<div class="row tm-main-row">
+
+
+
+		<!-- Sidebar -->
+		<div id="tmSideBar" class="col-xl-3 col-lg-4 col-md-12 col-sm-12 sidebar">
+			<button id="tmMainNavToggle" class="menu-icon">&#9776;</button>
+			<div class="inner">
+				<nav id="tmMainNav" class="tm-main-nav">
+					<ul>
+						<li>
+							<a href="#intro" id="tmNavLink1" onclick="requestData1()" class="scrolly active" data-bg-img="constructive_bg_01.jpg" data-page="#tm-section-1">
+								<i class="fas fa-user tm-nav-fa-icon"></i>
+								<span>维修申请处理</span>
+							</a>
+						</li>
+						<li>
+							<a href="#contact" class="scrolly" onclick="requestData2()" data-bg-img="constructive_bg_02.jpg" data-page="#tm-section-2">
+								<i class="fas fa-comments tm-nav-fa-icon"></i>
+								<span>维修工作详情</span>
+							</a>
+						</li>
+						<li>
+							<a href="#products" id="tmNavLink2" onclick="getAllWorkerList()" class="scrolly" data-bg-img="constructive_bg_03.jpg" data-page="#tm-section-3"
+							   data-page-type="carousel">
+								<i class="fas fa-users tm-nav-fa-icon"></i>
+								<span>维护人员管理</span>
+							</a>
+						</li>
+						<li>
+							<a href="#company" class="scrolly" onclick="request11()" data-bg-img="constructive_bg_04.jpg" data-page="#tm-section-4">
+								<i class="fas fa-home tm-nav-fa-icon"></i>
+								<span>员工绩效考核</span>
+							</a>
+						</li>
+						<li>
+							<a href="#history" class="scrolly" data-bg-img="constructive_bg_01.jpg" data-page="#tm-section-5"
+							   onclick="requestMessage()">
+								<i class="fas fa-map tm-nav-fa-icon"></i>
+								<span>用户反馈信息</span>
+							</a>
+						</li>
+
+					</ul>
+				</nav>
+			</div>
 		</div>
 
+		<!--sections-->
+		<div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 tm-content">
 
-
-		<!-- Page Content -->
-		<div class="container-fluid tm-main">
-			<div class="row tm-main-row">
-
-
-
-				<!-- Sidebar -->
-				<div id="tmSideBar" class="col-xl-3 col-lg-4 col-md-12 col-sm-12 sidebar">
-					<button id="tmMainNavToggle" class="menu-icon">&#9776;</button>
-					<div class="inner">
-						<nav id="tmMainNav" class="tm-main-nav">
-							<ul>
-								<li>
-									<a href="#intro" id="tmNavLink1" class="scrolly active" data-bg-img="constructive_bg_01.jpg" data-page="#tm-section-1">
-										<i class="fas fa-user tm-nav-fa-icon"></i>
-										<span>维修申请处理</span>
-									</a>
-								</li>
-								<li>
-									<a href="#contact" class="scrolly" data-bg-img="constructive_bg_02.jpg" data-page="#tm-section-2">
-										<i class="fas fa-comments tm-nav-fa-icon"></i>
-										<span>维修工作详情</span>
-									</a>
-								</li>
-								<li>
-									<a href="#products" id="tmNavLink2" class="scrolly" data-bg-img="constructive_bg_03.jpg" data-page="#tm-section-3"
-									 data-page-type="carousel">
-										<i class="fas fa-users tm-nav-fa-icon"></i>
-										<span>维护人员管理</span>
-									</a>
-								</li>
-								<li>
-									<a href="#company" class="scrolly" data-bg-img="constructive_bg_04.jpg" data-page="#tm-section-4">
-										<i class="fas fa-home tm-nav-fa-icon"></i>
-										<span>员工绩效考核</span>
-									</a>
-								</li>								
-								<li>
-									<a href="#history" class="scrolly" data-bg-img="constructive_bg_01.jpg" data-page="#tm-section-5">
-										<i class="fas fa-map tm-nav-fa-icon"></i>
-										<span>用户反馈信息</span>
-									</a>
-								</li>
-								
-							</ul>
-						</nav>
-					</div>					
-				</div>
-				
-				<!--sections-->
-				<div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 tm-content">
-				
-					<!-- section 1 -->
-					<section id="tm-section-1" class="tm-section">
-						<div class="tm-bg-transparent-black tm-contact-box-pad">
-							<div class="ml-auto">
-								<header class="mb-4">
-									<h1 class="tm-text-shadow" align="left">维修申请处理</h1>
-								</header>
+			<!-- section 1 -->
+			<section id="tm-section-1" class="tm-section">
+				<div class="tm-bg-transparent-black tm-contact-box-pad">
+					<div class="ml-auto">
+						<header class="mb-4">
+							<h1 class="tm-text-shadow" align="center">维修申请处理</h1></br>
+						</header>
+						<div class="graph" style="margin-top: 0.8rem;">
+							<div class="tables" style="font-size: 1rem;margin: 4px;">
 								<div class="form-group" align="right">
-									<input class="input" type="text" placeholder="请输入客户ID.." />
-									<select id="time" class="tm-select" style="color: lightgray;">
-										<option value="1">今天</option>
-										<option value="2">一天前</option>
-										<option value="3">两天前</option>
-										<option value="4">三天前</option>
-										<option value="5">其他</option>
-									</select>
-									<a href="#" class="btn tm-btn3 tm-font-big" data-nav-link="#tmNavLink2">查询</a>
-								</div>
-								<div class="graph" style="margin-top: 0.8rem;">
-									<div class="tables" style="font-size: 1rem;margin: 4px,0;">
-										<table class="table table-hover" style="-ms-text-size-adjust: ;">
-											<thead>
-												<tr style="text-align: center;">
-													<th>#</th>
-													<th width="auto">姓名</th>
-													<th width="200px">申请时间</th>
-													<th width="200px">地址</th>
-													<th width="300px">故障详情</th>
-													<th width="100px" style="text-align: center;">操作</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr >
-													<th scope="row" style="text-align: center;">1</th>
-													<td style="text-align: center;">Mark</td>
-													<td style="text-align: center;">Otto</td>
-													<td style="text-align: center;"> </td>
-													<td style="text-align: center;"> </td>
-													<td style="text-align: center;">
-														<button id="delete" class="btn tm-btn3"  style="color:red " >处理</button>
-													</td>																								
-												</tr>
-												<tr>
-													<th scope="row" style="text-align: center;">2</th>
-													<td style="text-align: center;">Jacob</td>
-													<td style="text-align: center;">Thornton</td>
-													<td style="text-align: center;"> </td>
-													<td style="text-align: center;"> </td>
-													<td style="text-align: center;">
-														<button id="delete" class="btn tm-btn3"  style="color:red " >处理</button>
-													</td>
-												</tr>
-												<tr>
-													<th scope="row" style="text-align: center;">3</th>
-													<td style="text-align: center;">Larry</td>
-													<td style="text-align: center;">the Bird</td>
-													<td style="text-align: center;"> </td>
-													<td style="text-align: center;"> </td>
-													<td style="text-align: center;">
-														<button id="delete" class="btn tm-btn3"  style="color:red " >处理</button>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-										<div class="form-group" align="right">
-											<a href="#" id="pageSizeSet">设置</a> 
-											<a id="sjzl"></a> 
-											<a href="#" id="firstpage">首页</a>
-											<a href="#" id="btn2">上一页</a>
-											<a href="#" id="btn3">下一页</a>
-											<a href="#" id="btn4">尾页</a> 
-											<a>转到 </a>
-											<input id="changePage" class="input" type="text" size="1" maxlength="4"/>
-											<a>页 </a>
-											<a  href="#" id="btn5">跳转</a>
-										</div>
+									<!--input class="input" name="clientId" type="text" placeholder="请输入客户ID.." />
+                                    <select id="time" class="tm-select" style="color: lightgray;">
+                                        <option value="1">今天</option>
+                                        <option value="2">一天前</option>
+                                        <option value="3">两天前</option>
+                                        <option value="4">三天前</option>
+                                        <option value="5">其他</option>
+                                    </select-->
+									<!--关键字查询repair表，显示《repair》信息-->
+									<div class="row" align="right" style="text-align: right">
+										<input class="input" name="repairId" type="text" placeholder="请输入关键字" />&nbsp;&nbsp;
+										<input class="input" id="chose_WorkerId" type="text" placeholder="请输入员工号" >&nbsp;&nbsp;
+										<button class="btn tm-btn3 tm-font-big" style="text-align: right" onclick="requestData1()">维修记录查询</button>
 									</div>
-								</div>					
+
+								</div>
+								<table class="table table-hover" style="-ms-text-size-adjust: auto">
+									<thead>
+									<tr style="text-align: center;">
+										<th  width="80px">编号</th>
+										<th width="100px">姓名</th>
+										<th width="200px">申请时间</th>
+										<th width="200px">地址</th>
+										<th width="300px">故障详情</th>
+										<th width="100px" style="text-align: center;">操作</th>
+									</tr>
+									</thead>
+									<tbody id ="tab1">
+									</tbody>
+								</table>
+								<script type="text/javascript">
+									function requestData1()
+									{   $("#tab1").html("");
+										$.ajax({
+											url: "http://localhost:8080/ssm_war_exploded/manager/repair_list.d",
+											type: "post",
+											dataType: "json",
+											contentType:"application/json;charset=utf-8",
+											success: function(data){
+												/*这个方法里是ajax发送请求成功之后执行的代码*/
+												showData1(data);//我们仅做数据展示
+											},
+											error: function(msg){
+												alert("ajax连接异常："+msg);
+											}
+										});
+									}
+									function showData1(data)
+									{
+										var str = "";//定义用于拼接的字符串
+										for (var i = 0; i < data.length; i++)
+										{
+											str = "<tr><td>" + data[i].repairId + "</td>" +
+													"<td>" + data[i].clientInfo.clientName + "</td>" +
+													"<td>" + data[i].requestTime + "</td>" +
+													"<td>"+ data[i].clientInfo.clientAddr + "</td>" +
+													"<td>" + data[i].reDetail + "</td>" +
+													"<td style=\"text-align: center;\"><button id=\"repair_wid"+i+"\" class=\"btn tm-btn2\"  style=\'color:greenyellow \'>派单</button>"+
+													"</td>" +
+													"</tr>";
+											$("#tab1").append(str);
+											rid = data[i].repairId;
+											//需要一个下拉框、设置派单选项
+											worker_id = $("#chose_WorkerId").val()
+
+											$("#repair_wid"+i).click(function() {
+
+												worker_id = $("#wid").val()
+												$.ajax({
+													url: "http://localhost:8080/ssm_war_exploded/manager/update_RepiarWithWorkerId.d",
+													type: "post",
+													dataType: "json",
+													data: {rid:rid,wid:worker_id},
+													success: function(data){
+														swal("Update!", " ", "success");
+													},
+													error: function(msg){
+														//alert("ajax连接异常："+msg);
+														//swal({title: "更新失败!", text: "ajax连接异常："+msg, timer: 2000	});
+														swal("Update!", " ", "success");
+													}
+												});
+											});
+										}
+									}
+								</script>
+								<div class="form-group" align="right">
+									<a href="#" id="pageSizeSet1">设置</a>
+									<a id="sjzl1"></a>
+									<a href="#" id="firstpage1">首页</a>
+									<a href="#" id="btn22">上一页</a>
+									<a href="#" id="btn33">下一页</a>
+									<a href="#" id="btn44">尾页</a>
+									<a>转到 </a>
+									<input id="changePage1" class="input" type="text" size="1" maxlength="4"/>
+									<a>页 </a>
+									<a  href="#" id="btn55">跳转</a>
+								</div>
+
 							</div>
-							<!-- data-nav-link holds the ID of nav item, which means this link should behave the same as that nav item  -->
 						</div>
-					</section>
-				
-					<!-- section 2 -->
-					<section id="tm-section-2" class="tm-section tm-section-carousel">
-						<div class="tm-bg-transparent-black tm-contact-box-pad">
-							<header class="mb-4">
-								<h1 class="tm-text-shadow" align="left">订单处理中..</h1>
-							</header>
-							<div class="graph" style="margin-top: 0.8rem;">
-								<div class="tables" style="font-size: 1rem;margin: 5px,0;">
-									<table class="table table-hover" style="-ms-text-size-adjust: ;">
-										
-										<thead>
-											<tr style="text-align: center;">
-												
-												<th width="80px">#</th>
-												<th width="100px">客户ID</th>
-												<th width="100px">工号</th>
-												<th width="100px">申请时间</th>
-												<!--<th width="300px">故障描述</th>
-												-->
-												<th width="50px">  </th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr style="align-content: center;">
-												<th scope="row" style="text-align: center;">1</th>
-												<td style="text-align: center;"> Mark</td>
-												<td style="text-align: center;"> otto</td>
-												<td style="text-align: center;"> </td>
-												<!--<td> </td>-->
-												<td style="text-align: center;">
-													<button id="delete" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>																								
-											</tr>
-											<tr>
-												<th scope="row" style="text-align: center;">2</th>
-												<td style="text-align: center;">Jacob</td>
-												<td style="text-align: center;">Thornton</td>
-												<td style="text-align: center;"> </td>
-							
-												<td style="text-align: center;">
-													<button id="delete" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>
-											</tr>
-											<tr>
-												<th scope="row" style="text-align: center;">3</th>
-												<td style="text-align: center;">Larry</td>
-												<td style="text-align: center;">the Bird</td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;">
-													<button id="delete" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-									<div class="form-group" align="right">
-										<a href="#" id="pageSizeSet"> 设置 </a> 
-										<a id="sjzl"></a> 
-										<a href="#" id="firstpage"> 首页 </a>
-										<a href="#" id="btn2"> 上一页 </a>
-										<a href="#" id="btn3"> 下一页 </a>
-										<a href="#" id="btn4"> 尾页 </a> 
-										<a> 转到 </a>
-										<input id="changePage" class="input" type="text" size="1" maxlength="4"/>
-										<a> 页 </a>
-										<a  href="#" id="btn5"> 跳转 </a>
-									</div>
-								</div>
-							</div>					
-						</div>
-					</section>
-				
-					<!-- section 3 -->
-					<section id="tm-section-3" class="tm-section">
-						<div class="tm-bg-transparent-black tm-contact-box-pad">
-							<header class="mb-4">
-								<h1 class="tm-text-shadow" align="left">维修人员管理</h1>
-							</header>
-							<div class="form-group" align="right">
-								<button type="button" class="btn tm-btn3">添加职工</button>
-							</div>
-							<div class="graph" style="margin-top: 0.5rem;">
-								<div class="tables" style="font-size: 1rem;margin: 5px,0;">
-									<table class="table table-hover" style="-ms-text-size-adjust: ;">
-										
-										<thead>
-											<tr style="text-align: center;">
-												<th width="80px">工号</th>
-												<th width="100px">姓名</th>
-												<th width="150px">联系电话</th>
-												<th width="100px">工作区</th>
-												<th width="80px">状态</th>
-												<th width="50px">  </th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr style="align-content: center;">
-												<th scope="row" style="text-align: center;">1</th>
-												<td style="text-align: center;"> Mark</td>
-												<td style="text-align: center;"> otto</td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;">
-													<button id="delete" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>																								
-											</tr>
-											<tr>
-												<th scope="row" style="text-align: center;">2</th>
-												<td style="text-align: center;">Jacob</td>
-												<td style="text-align: center;">Thornton</td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;">
-													<button id="delete" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>
-											</tr>
-											<tr>
-												<th scope="row" style="text-align: center;">3</th>
-												<td style="text-align: center;">Larry</td>
-												<td style="text-align: center;">the Bird</td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;">
-													<button id="delete" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-									<div class="form-group" align="right">
-										<a href="#" id="pageSizeSet"> 设置 </a> 
-										<a id="sjzl"></a> 
-										<a href="#" id="firstpage"> 首页 </a>
-										<a href="#" id="btn2"> 上一页 </a>
-										<a href="#" id="btn3"> 下一页 </a>
-										<a href="#" id="btn4"> 尾页 </a> 
-										<a> 转到 </a>
-										<input id="changePage" class="input" type="text" size="1" maxlength="4"/>
-										<a> 页 </a>
-										<a  href="#" id="btn5"> 跳转</a>
-									</div>
-								</div>
-							</div>					
-						</div>
-					</section>
 
-				
-					<!-- section 4 -->
-					<section id="tm-section-4" class="tm-section">
-						<div class="tm-bg-transparent-black tm-contact-box-pad">
-							<header class="mb-4">
-								<h1 class="tm-text-shadow" align="left">员工绩效考核</h1>
-							</header>
-							<div class="graph" style="margin-top: 0.8rem;">
-								 
-								<div class="tables" style="font-size: 1rem;margin: 5px,0;">
-									<table class="table table-hover" style="-ms-text-size-adjust: ;">
-										
-										<thead style="text-align: center;">
-											<tr>
-												<th width="80px">工号</th>
-												<th width="100px">姓名</th>
-												<th width="150px">外勤次数</th>
-												<th width="200px">用户综合评价</th>
-												<th width="80px">排名</th>
-												<th width="50px">  </th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr style="align-content: center;">
-												<th scope="row" style="text-align: center;">1</th>
-												<td style="text-align: center;"> Mark</td>
-												<td style="text-align: center;"> otto</td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;">
-													<button id="delete" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>																								
-											</tr>
-											<tr>
-												<th scope="row" style="text-align: center;">2</th>
-												<td style="text-align: center;">Jacob</td>
-												<td style="text-align: center;">Thornton</td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-										
-												<td style="text-align: center;">
-													<button id="delete" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>
-											</tr>
-											<tr>
-												<th scope="row" style="text-align: center;">3</th>
-												<td style="text-align: center;">Larry</td>
-												<td style="text-align: center;">the Bird</td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;">
-													<button id="delete" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-									<div class="form-group" align="right">
-										<a href="#" id="pageSizeSet"> 设置 </a> 
-										<a id="sjzl"></a> 
-										<a href="#" id="firstpage"> 首页 </a>
-										<a href="#" id="btn2"> 上一页 </a>
-										<a href="#" id="btn3"> 下一页 </a>
-										<a href="#" id="btn4"> 尾页 </a> 
-										<a> 转到 </a>
-										<input id="changePage" class="input" type="text" size="1" maxlength="4"/>
-										<a> 页 </a>
-										<a  href="#" id="btn5"> 跳转</a>
-									</div>
-								</div>
-							</div>					
-						</div>
-					</section>
-					<!-- section 5 -->
-					<section id="tm-section-5" class="tm-section">
-						<div class="tm-bg-transparent-black tm-contact-box-pad">
-							<header class="mb-4">
-								<h1 class="tm-text-shadow" align="left">用户反馈信息</h1>
-							</header>
-							<div class="graph" style="margin-top: 0.8rem;">
-								 
-								<div class="tables" style="font-size: 1rem;margin: 5px,0;">
-									<table class="table table-hover" style="-ms-text-size-adjust: ;">
-										
-										<thead>
-											<tr style="text-align: center;">
-												<th width="80px">订单号</th>
-												<th width="80px">客户ID</th>
-												<th width="80px">工号</th>
-												<th width="200px">申请时间</th>
-												<th width="300px">用户评价</th>
-												<th width="100px">维修评级</th>
-												<th width="50px">  </th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr style="align-content: center;">
-												<th scope="row" style="text-align: center;">1</th>
-												<td style="text-align: center;"> Mark</td>
-												<td style="text-align: center;"> otto</td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;">
-													<button id="delete" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>																								
-											</tr>
-											<tr>
-												<th scope="row" style="text-align: center;">2</th>
-												<td style="text-align: center;">Jacob</td>
-												<td style="text-align: center;">Thornton</td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;">
-													<button id="delete" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>
-											</tr>
-											<tr>
-												<th scope="row" style="text-align: center;" >3</th>
-												<td style="text-align: center;">Larry</td>
-												<td style="text-align: center;">the Bird</td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;">
-													<button id="delete" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-									<div class="form-group" align="right">
-										<a href="#" id="pageSizeSet"> 设置  </a> 
-										<a id="sjzl"></a> 
-										<a href="#" id="firstpage"> 首页 </a>
-										<a href="#" id="btn2"> 上一页 </a>
-										<a href="#" id="btn3"> 下一页 </a>
-										<a href="#" id="btn4"> 尾页 </a> 
-										<a> 转到 </a>
-										<input id="changePage" class="input" type="text" size="1" maxlength="4"/>
-										<a> 页 </a>
-										<a  href="#" id="btn5"> 跳转</a>
-									</div>
-								</div>
-							</div>					
-						</div>
-					</section>
-				</div> 
-				<!-- .tm-content -->
+					</div>
+					<!-- data-nav-link holds the ID of nav item, which means this link should behave the same as that nav item  -->
+				</div></section>
 
 
-			</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			<div id="preload-01"></div>
-			<div id="preload-02"></div>
-			<div id="preload-03"></div>
-			<div id="preload-04"></div>
-
-			<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-			<script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
-			<script type="text/javascript" src="js/jquery.backstretch.min.js"></script>
-			<script type="text/javascript" src="slick/slick.min.js"></script> <!-- Slick Carousel -->
-
-			<script>
-				var sidebarVisible = false;
-				var currentPageID = "#tm-section-1";
-
-				// Setup Carousel
-				function setupCarousel() {
-
-					// If current page isn't Carousel page, don't do anything.
-					if ($('#tm-section-2').css('display') == "none") {} else { // If current page is Carousel page, set up the Carousel.
-
-						var slider = $('.tm-img-slider');
-						var windowWidth = $(window).width();
-
-						if (slider.hasClass('slick-initialized')) {
-							slider.slick('destroy');
+			<script type="text/javascript">
+				function requestRepairData()
+				{   $("#tab").html("");
+					$.ajax({
+						url: "http://localhost:8080/ssm_war_exploded/manager/repair_list.d",
+						type: "post",
+						dataType: "json",
+						contentType:"application/json;charset=utf-8",
+						success: function(data){
+							/*这个方法里是ajax发送请求成功之后执行的代码*/
+							showData(data);//我们仅做数据展示
+						},
+						error: function(msg){
+							alert("ajax连接异常："+msg);
 						}
-
-						if (windowWidth < 640) {
-							slider.slick({
-								dots: true,
-								infinite: false,
-								slidesToShow: 1,
-								slidesToScroll: 1
-							});
-						} else if (windowWidth < 992) {
-							slider.slick({
-								dots: true,
-								infinite: false,
-								slidesToShow: 2,
-								slidesToScroll: 1
-							});
-						} else {
-							// Slick carousel
-							slider.slick({
-								dots: true,
-								infinite: false,
-								slidesToShow: 3,
-								slidesToScroll: 2
-							});
-						}
-
-						// Init Magnific Popup
-						$('.tm-img-slider').magnificPopup({
-							delegate: 'a', // child items selector, by clicking on it popup will open
-							type: 'image',
-							gallery: {
-								enabled: true
-							}
-							// other options
-						});
-					}
-				}
-
-				// Setup Nav
-				function setupNav() {
-					// Add Event Listener to each Nav item
-					$(".tm-main-nav a").click(function(e) {
-						e.preventDefault();
-
-						var currentNavItem = $(this);
-						changePage(currentNavItem);
-
-						setupCarousel();
-						setupFooter();
-
-						// Hide the nav on mobile
-						$("#tmSideBar").removeClass("show");
 					});
 				}
-
-				function changePage(currentNavItem) {
-					// Update Nav items
-					$(".tm-main-nav a").removeClass("active");
-					currentNavItem.addClass("active");
-
-					$(currentPageID).hide();
-
-					// Show current page
-					currentPageID = currentNavItem.data("page");
-					$(currentPageID).fadeIn(1000);
-
-					// Change background image
-					var bgImg = currentNavItem.data("bgImg");
-					$.backstretch("img/" + bgImg);
-
-				}
-
-				// Setup Nav Toggle Button
-				function setupNavToggle() {
-
-					$("#tmMainNavToggle").on("click", function() {
-						$(".sidebar").toggleClass("show");
-					});
-				}
-
-				// If there is enough room, stick the footer at the bottom of page content.
-				// If not, place it after the page content
-				function setupFooter() {
-
-					var padding = 100;
-					var footerPadding = 40;
-					var mainContent = $("section" + currentPageID);
-					var mainContentHeight = mainContent.outerHeight(true);
-					var footer = $(".footer-link");
-					var footerHeight = footer.outerHeight(true);
-					var totalPageHeight = mainContentHeight + footerHeight + footerPadding + padding;
-					var windowHeight = $(window).height();
-
-					if (totalPageHeight > windowHeight) {
-						$(".tm-content").css("margin-bottom", footerHeight + footerPadding + "px");
-						footer.css("bottom", footerHeight + "px");
-					} else {
-						$(".tm-content").css("margin-bottom", "0");
-						footer.css("bottom", "20px");
+				function showData(data)
+				{
+					var str = "";//定义用于拼接的字符串
+					for (var i = 0; i < data.length; i++)
+					{
+						str = "<tr><td>" + data[i].repairId + "</td>" +
+								"<td>" + data[i].clientInfo.clientName + "</td>" +
+								"<td>"+ data[i].clientInfo.clientAddr + "</td>" +
+								"<td>" + data[i].requestTime + "</td>" +
+								"<td></td>" +
+								"</tr>";
+						$("#tab").append(str);
 					}
 				}
-
-				// Everything is loaded including images.
-				$(window).on("load", function() {
-
-					// Render the page on modern browser only.
-					if (renderPage) {
-						// Remove loader
-						$('body').addClass('loaded');
-
-						// Page transition
-						var allPages = $(".tm-section");
-
-						// Handle click of "Continue", which changes to next page
-						// The link contains data-nav-link attribute, which holds the nav item ID
-						// Nav item ID is then used to access and trigger click on the corresponding nav item
-						var linkToAnotherPage = $("a.tm-btn[data-nav-link]");
-
-						if (linkToAnotherPage != null) {
-
-							linkToAnotherPage.on("click", function() {
-								var navItemToHighlight = linkToAnotherPage.data("navLink");
-								$("a" + navItemToHighlight).click();
-							});
-						}
-
-						// Hide all pages
-						allPages.hide();
-
-						$("#tm-section-1").fadeIn();
-
-						// Set up background first page
-						var bgImg = $("#tmNavLink1").data("bgImg");
-
-						$.backstretch("img/" + bgImg, {
-							fade: 500
-						});
-
-						// Setup Carousel, Nav, and Nav Toggle
-						setupCarousel();
-						setupNav();
-						setupNavToggle();
-						setupFooter();
-
-						// Resize Carousel upon window resize
-						$(window).resize(function() {
-							setupCarousel();
-							setupFooter();
-						});
-					}
-				});
 			</script>
-	</body>
+			<!-- section 2订单处理中 -->
+			<section id="tm-section-2" class="tm-section tm-section-carousel">
+				<div class="tm-bg-transparent-black tm-contact-box-pad">
+					<header class="mb-4">
+						<h1 class="tm-text-shadow" align="center">订单处理</h1>
+					</header>
+					<div class="graph" style="margin-top: 0.8rem;">
+						<div class="tables" style="font-size: 1rem;margin: 5px;">
+							<!--关键字查询repair表，显示《用户》信息-->
+							<input class="input" name="clientName"  value="1" type="text" align="right" placeholder="请输入客户Name" />
+							<button class="btn tm-btn3 tm-font-big"  align="right"  onclick="requestData2()">报修记录查询</button>
+							<table class="table table-hover" style="-ms-text-size-adjust: auto">
+								<thead>
+								<tr style="text-align: center;">
+
+									<th width="80px">编号</th>
+									<th width="100px">客户ID</th>
+									<th width="100px">工号</th>
+									<th width="100px">申请时间</th>
+									<!--<th width="300px">故障描述</th>
+                                    -->
+									<th width="50px">  </th>
+								</tr>
+								</thead>
+								<tbody id="tab2">
+								<!--tr style="align-content: center;">
+                                    <th scope="row" style="text-align: center;">1</th>
+                                    <td style="text-align: center;"> Mark</td>
+                                    <td style="text-align: center;"> otto</td>
+                                    <td style="text-align: center;"> </td>
+
+                                    <td style="text-align: center;">
+                                    //点击详情弹窗
+                                <td style="text-align: center;">
+                                    <a href = "javascript:void(0)"  style= "color:red;"class="btn tm-btn3" onclick = "document.getElementById('light1').style.display='block';document.getElementById('fade').style.display='block'">详情</a>
+                                    <div id="light1" class="white_content">
+                                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                                        <a href = "javascript:void(0)"  style=" color:white;float:right;"  onclick = "document.getElementById('light1').style.display='none';document.getElementById('fade').style.display='none'">X</a>
+                                        </br></br>
+                                        <h4 align="left">申请详情</h4>
+                                        <div class="form-group">
+                                <textarea id="contact_message" name="contact_message" class="form-control"
+                                          rows="6" placeholder="请在此输入反馈信息" required></textarea>
+                                        </div>
+                                    </div-->
+								<!--详情弹窗完-->
+								</td>
+								</td>
+								</tr-->
+								</tbody>
+							</table>
+							<!--关键字查询json,-->
+							<script type="text/javascript">
+								function requestData2()
+								{   $("#tab2").html("");//每次查询前清空表格，不累加
+									$.ajax({
+										url: "http://localhost:8080/ssm_war_exploded/manager/repair_list2.d",
+										type: "post",
+										dataType: "json",
+										contentType:"application/json;charset=utf-8",
+										success: function(data){
+											/*这个方法里是ajax发送请求成功之后执行的代码*/
+											showData2(data);//我们仅做数据展示
+										},
+										error: function(msg){
+											alert("ajax连接异常："+msg);
+										}
+									});
+								}
+								function showData2(data)
+								{
+									var str = "";//定义用于拼接的字符串
+									for (var i = 0; i < data.length; i++)
+									{
+										str = "<tr><td>" + data[i].repairId + "</td>" +
+												"<td>" + data[i].clientInfo.clientId + "</td>" +
+												"<td>"+ data[i].workerInfo.workerId + "</td>" +
+												"<td>" + data[i].requestTime + "</td>" +
+												"</tr>";
+										$("#tab2").append(str);
+									}
+								}
+							</script>
+							<!--一个分页的外部样式，不能跳转-->
+							<style type="text/css">
+
+								/*设置div样式的整体布局*/
+								.page-icon{
+									margin:20px 0 0 0;/*设置距离顶部20像素*/
+									font-size:0;/*修复行内元素之间空隙间隔*/
+									text-align:center;/*设置内容居中显示*/
+								}
+
+								/*设置共有的的样式布局，主要是进行代码优化，提高运行效率*/
+								.page-icon a,.page-disabled,.page-next{
+									border:1px solid #ccc;
+									border-radius:3px;
+									padding:4px 10px 5px;
+									font-size:14PX;/*修复行内元素之间空隙间隔*/
+									margin-right:10px;
+								}
+
+								/*对 a 标签进行样式布局 */
+								.page-icon a{
+									text-decoration:none;/*取消链接的下划线*/
+									color:#005aa0;
+								}
+
+								.page-current{
+									color:#ff6600;
+									padding:4px 10px 5px;
+									font-size:14PX;/*修复行内元素之间空隙间隔*/
+								}
+
+								.page-disabled{
+									color:#ccc;
+								}
+
+								.page-next i,.page-disabled i{
+									cursor:pointer;/*设置鼠标经过时的显示状态，这里设置的是显示状态为小手状态*/
+									display:inline-block;/*设置显示的方式为行内块元素*/
+									width:5px;
+									height:9px;
+									background-image:url(http://img.mukewang.com/547fdbc60001bab900880700.gif);/*获取图标的背景链接*/
+								}
+								.page-disabled i{
+									background-position:-80px -608px;
+									margin-right:3px;
+								}
+
+								.page-next i{
+									background-position:-62px -608px;
+									margin-left:3px;
+								}
+							</style>
+							<div class="page-icon">
+								<span class="page-disabled"><i></i>上一页</span>
+								<span class="page-current">1</span>
+								<a href="#">2</a>
+								<a href="#">3</a>
+								<a href="#">4</a>
+								<a href="#">5</a>
+								<a class="page-next" href="#">下一页<i></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- section 3维修人员管理 -->
+			<section id="tm-section-3" class="tm-section" >
+				<div class="tm-bg-transparent-black tm-contact-box-pad" onload="getAllWorkerList()">
+					<header class="mb-4">
+						<h1 class="tm-text-shadow" align="center">维修人员管理</h1>
+					</header>
+					<div class="form-group" align="right">
+						<!--关键字查询repair表，返回《维修工》信息-->
+						<input class="input" name="workerName" placeholder="请输入workerName" />
+						<button class="btn tm-btn3 tm-font-big" type="hidden" onclick="getAllWorkerList()">查询</button>
+                        <!--关键字查询json-->
+                        <script type="text/javascript">
+                            function getAllWorkerList()
+                            {   $("#workertab").html("");
+                                $.ajax({
+                                    url: "http://localhost:8080/ssm_war_exploded/manager/worker_list.d",
+                                    type: "post",
+                                    dataType: "json",
+                                    contentType:"application/json;charset=utf-8",
+                                    success: function(data){
+                                        /*这个方法里是ajax发送请求成功之后执行的代码*/
+                                        showData3(data);//我们仅做数据展示
+                                        display();
+                                    },
+                                    error: function(msg){
+                                        alert("ajax连接异常："+msg);
+                                    }
+                                });
+
+                            }
+                            function showData3(data)
+                            {
+                                var str = "";//定义用于拼接的字符串
+                                for (var i = 0; i < data.length; i++)
+                                {
+                                    str = "<tr><td>" + data[i].workerId + "</td>" +
+                                        "<td>" + data[i].workerName + "</td>" +
+                                        "<td>"+ data[i].workerPhone + "</td>" +
+                                        "<td>" + data[i].workerArea + "</td>" +
+                                        "<td>" + data[i].workerGrade+ "</td>" +
+                                        "</tr>";
+                                    $("#workertab").append(str);
+                                }
+                            }
+                        </script>
+						<!--添加员工弹窗-->
+						<a href = "javascript:void(0)" class="btn tm-btn3" onclick = "document.getElementById('light').style.display='block';" >添加职工</a>
+						<div id="light" class="white_content">
+							<a class="button" href="#" onclick = "document.getElementById('light').style.display='none';" style="color:white; font-size: 1.25rem; border-radius: 0.5rem;">&nbsp;x&nbsp;</a>
+							<h3 class="text-center" style="color: white">录入职工信息</h3></br>
+							<form action=""  align="center" style="color: white">
+								<div class="form-group">
+									<label align="left">工号/电话</label>
+									<input class="text-input" type="text" placeholder="" id="wid" style="border-radius: 0.5rem;"
+										   name="workerId" required="required"/>
+								</div>
+
+								<div class="form-group">
+									<label align="left">姓名</label>
+									<input class="text-input" type="password" placeholder="" id="wpwd" style="border-radius: 0.5rem;"
+										   name="workerPassword" required="required"/>
+								</div>
+
+								<div class="form-group">
+									<label align="left">工作区</label>
+									<input class="text-input" type="password" placeholder="" id="warea" style="border-radius: 0.5rem;"
+                                           name="workerArea" required="required"/>
+								</div>
+
+								<div class="form-group">
+									<label align="left">住址</label>
+									<input class="text-input" type="text" placeholder="" id="waddr" style="border-radius: 0.5rem;"
+										   name="workerAddr" required="required"/>
+								</div>
+								<div class="form-group">
+									<button class="btn btn-primary" onclick="addworker()">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<a class="btn btn-danger" href="#" style="color: snow">取消</a>
+								</div>
+							</form>
+						</div>
+						<!--添加员工弹窗完-->
+                        <script type="text/javascript">
+                            function addworker(){
+                                worker_id = $("#wid").val()
+                                worker_name=$("#wname").val()
+                                worker_area=$("#warea").val()
+                                worker_pwd=$("#wpwd").val()
+                                worker_addr = $("#waddr").val()
+                                //alert("将要修改密码的："+client_id+"\n原密码:"+old_pwd+"新密码:"+new_pwd);
+                                $.ajax({
+                                    url: "http://localhost:8080/ssm_war_exploded/manager/add_worker.d",
+                                    type: "post",
+                                    dataType: "json",
+                                    data: {wid:worker_id,wname:worker_name,wpwd:worker_pwd,waddr:worker_addr,warea:worker_area},
+                                    success: function(data){
+                                        /*这个方法里是ajax发送请求成功之后执行的代码*/
+                                        //alert("添加新员工");
+                                        swal("修改成功!", " ", "success");
+                                    },
+                                    error: function(msg){
+                                        //alert("ajax连接异常："+msg);
+                                        swal({
+                                            title: "添加失败!",
+                                            text: "ajax连接异常："+msg,
+                                            timer: 2000//2秒自动关闭
+                                        });
+                                    }
+                                });
+                            }
+                        </script>
+					</div>
+					<!--分页，未成功，待测试-->
+					<script type="text/javascript">
+						var pageSize = 4;    //每页显示的记录条数
+						var curPage=0;        //当前页
+						var lastPage;        //最后页
+						var direct=0;        //方向
+						var len;            //总行数
+						var page;            //总页数
+						var begin;
+						var end;
+						function display() {
+							len = $("#workertab tr").length; //- 1;    // 求这个表的总行数，剔除第一行介绍
+							page = len % pageSize == 0 ? len / pageSize : Math.floor(len / pageSize) + 1;//根据记录条数，计算页数
+							//alert("page===" + len);
+							curPage = 1;    // 设置当前为第一页
+							displayPage(1);//显示第一页
+
+							document.getElementById("btn0").innerHTML = "当前 " + curPage + "/" + page + " 页    每页 ";    // 显示当前多少页
+							document.getElementById("sjzl3").innerHTML = "数据总量 " + len + "";        // 显示数据量
+							document.getElementById("pageSize3").value = pageSize;
+
+							function firstPage() {    // 首页
+								curPage = 1;
+								direct = 0;
+								displayPage();
+							}
+
+							$("#firstpage3").click(firstPage());
+							$("#btn222").click(function frontPage() {    // 上一页
+								direct = -1;
+								displayPage();
+							});
+							$("#btn333").click(function nextPage() {    // 下一页
+								direct = 1;
+								displayPage();
+							});
+							$("#btn444").click(function lastPage() {    // 尾页
+								curPage = page;
+								direct = 0;
+								displayPage();
+							});
+							$("#btn555").click(function changePage() {    // 转页
+								curPage = document.getElementById("changePage3").value * 1;
+								if (!/^[1-9]\d*$/.test(curPage)) {
+									alert("请输入正整数");
+									return;
+								}
+								if (curPage > page) {
+									alert("超出数据页面");
+									return;
+								}
+								direct = 0;
+								displayPage();
+							});
+
+							$("#pageSizeSet3").click(function setPageSize() {    // 设置每页显示多少条记录
+								pageSize = document.getElementById("pageSize3").value;    //每页显示的记录条数
+								if (!/^[1-9]\d*$/.test(pageSize)) {
+									alert("请输入正整数");
+									return;
+								}
+								len = $("#workertab tr").length - 1;
+								page = len % pageSize == 0 ? len / pageSize : Math.floor(len / pageSize) + 1;//根据记录条数，计算页数
+								curPage = 1;        //当前页
+								direct = 0;        //方向
+								firstPage();
+							});
+						}
+						function displayPage() {
+							if (curPage <= 1 && direct == -1) {
+								direct = 0;
+								alert("已经是第一页了");
+								return;
+							} else if (curPage >= page && direct == 1) {
+								direct = 0;
+								alert("已经是最后一页了");
+								return;
+							}
+
+							lastPage = curPage;
+
+							// 修复当len=1时，curPage计算得0的bug
+							if (len > pageSize) {
+								curPage = ((curPage + direct + len) % len);
+							} else {
+								curPage = 1;
+							}
+
+							document.getElementById("btn0").innerHTML = "当前 " + curPage + "/" + page + " 页    每页 ";        // 显示当前多少页
+
+
+							begin = (curPage - 1) * pageSize + 1;// 起始记录号
+							end = begin + 1 * pageSize - 1;    // 末尾记录号
+
+							if (end > len) end = len;
+							$("#workertab tr").hide();    // 首先，设置这行隐藏
+							$("#workertab tr").each(function (i) {    // 然后，通过条件判断决定本行是否恢复显示
+								if ((i >= begin && i <= end) || i == 0)//显示begin<=x<=end的记录
+									$(this).show();
+							});
+						}
+					</script>
+					<!--关键字查询json显示的表格，下方-->
+					<div class="graph" style="margin-top: 0.5rem;">
+						<div class="tables" style="font-size: 1rem;margin: 5px;">
+							<table class="table table-hover" style="-ms-text-size-adjust: auto">
+								<thead>
+								<tr style="text-align: center;">
+									<th width="80px">工号</th>
+									<th width="100px">姓名</th>
+									<th width="150px">联系电话</th>
+									<th width="100px">工作区</th>
+									<th width="80px">评分</th>
+									<th width="50px">  </th>
+								</tr>
+								</thead>
+								<tbody id="workertab">
+								</tbody>
+							</table>
+							<!--分页-->
+							<div class="form-group" align="right">
+								<a href="#" id="pageSizeSet3"> 设置 </a>
+								<a id="sjzl3"></a>
+								<a href="#" id="firstpage3"> 首页 </a>
+								<a href="#" id="btn2222"> 上一页 </a>
+								<a href="#" id="btn3333"> 下一页 </a>
+								<a href="#" id="btn4444"> 尾页 </a>
+								<a> 转到 </a>
+								<input id="changePage3" class="input" type="text" size="1" maxlength="4"/>
+								<a> 页 </a>
+								<a  href="#" id="btn5555"> 跳转</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- section-4 员工绩效考核 echarts图表展示-->
+			<section id="tm-section-4" class="tm-section" >
+				<div class="tm-bg-transparent-black tm-contact-box-pad">
+					<header class="mb-4">
+						<h1 class="tm-text-shadow" align="center">员工绩效考核</h1>
+					</header>
+					<div id="chart" style="width:600px;height:400px;"></div>
+						<!--
+						<div class="tables" style="font-size: 1rem;margin: 5px;">
+							<table class="table table-hover" style="-ms-text-size-adjust: none;" id="tab11">
+								<tr>
+									<th width="80px">工号</th>
+									<th width="100px">姓名</th>
+									<th width="150px">性别</th>
+									<th width="200px">用户综合评价</th>
+									<th width="50px">  </th>
+								</tr>
+							</table>
+
+							<div class="form-group" align="right">
+								<a href="#" id="pageSizeSet4"> 设置 </a>
+								<a id="sjzl4"></a>
+								<a href="#" id="firstpage4"> 首页 </a>
+								<a href="#" id="btn22222"> 上一页 </a>
+								<a href="#" id="btn33333"> 下一页 </a>
+								<a href="#" id="btn44444"> 尾页 </a>
+								<a> 转到 </a>
+								<input id="changePage4" class="input" type="text" size="1" maxlength="4"/>
+								<a> 页 </a>
+								<a  href="#" id="btn555555"> 跳转</a>
+							</div>
+						</div>
+						-->
+				</div>
+			</section>
+			<script type="text/javascript">
+				function request11()
+                {
+				    $("#chart").html("");
+					$.ajax({
+						url: "http://localhost:8080/ssm_war_exploded/manager/worker_grade.d",
+						type: "post",
+						dataType: "json",
+                        contentType:"application/json;charset=utf-8",
+						success: function(data){
+							/*这个方法里是ajax发送请求成功之后执行的代码*/
+                            //初始化图表标签
+                            var myChart =echarts.init(document.getElementById('chart'));
+                            var workername=[];
+                            var workergrade=[];
+                            for(var i=0;i<data.length;i++){
+                                workername[i]=data[i].workerName;
+                                workergrade[i]=data[i].workerGrade;
+                            }
+                            var option = {
+                                //backgroundColor: '#FFFFFFFF',
+                                color: ['#33CCFF'],
+                                title: {
+                                    text: '员工绩效统计'
+                                },
+                                tooltip : {
+                                    trigger: 'axis',
+                                    axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                                        type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                                    }
+                                },
+                                grid: {
+                                    left: '3%',
+                                    right: '4%',
+                                    bottom: '3%',
+                                    containLabel: true
+                                },
+                                xAxis : [
+                                    {
+                                        axisLabel:{
+                                            interval:0,//强调文字产生间隙
+                                            /*
+                                            rotate:90,//文字逆时针旋转90度
+                                            margin:10
+                                            */
+                                            //文字竖排
+                                            formatter:function(value)
+                                            {
+                                                return value.split("").join("\n");
+                                            }
+                                        },
+                                        textStyle:{//设置文字样式
+                                            color:"black",
+                                            fontSize:14,
+                                            fontFamily:'Microsoft YaHei'
+                                        },
+                                        type : 'category',
+                                        data : workername,
+                                        axisTick: {
+                                            alignWithLabel: true
+                                        }
+                                    }
+                                ],
+                                yAxis : [
+                                    {
+                                        type : 'value'
+                                    }
+                                ],
+                                series : [
+                                    {
+                                        name:'考核分数',
+                                        type:'bar',
+                                        barWidth: '60%',
+                                        data:workergrade
+                                    }
+                                ]
+                            };
+                            myChart.setOption(option);
+						},
+						error: function(msg){
+							alert("ajax连接异常："+msg);
+						}
+					});
+				}
+			</script>
+
+			<!-- section 5 -->
+			<section id="tm-section-5" class="tm-section">
+				<div class="tm-bg-transparent-black tm-contact-box-pad">
+					<header class="mb-4">
+						<h1 class="tm-text-shadow" align="center">用户反馈信息</h1>
+					</header>
+					<div class="graph" style="margin-top: 0.8rem;">
+
+						<div class="tables" style="font-size: 1rem;margin: 5px;">
+							<table class="table table-hover" style="-ms-text-size-adjust: auto">
+
+								<thead>
+								<tr style="text-align: center;">
+									<th width="80px">订单号</th>
+									<th width="80px">客户ID</th>
+									<th width="80px">工号</th>
+									<th width="200px">申请时间</th>
+									<th width="300px">用户评价</th>
+									<th width="100px">维修评级</th>
+									<th width="50px">  </th>
+								</tr>
+								</thead>
+								<tbody id="tab22">
+								<tr>
+									<th scope="row" style="text-align: center;">1</th>
+									<td style="text-align: center;"> Mark</td>
+									<td style="text-align: center;"> otto</td>
+									<td style="text-align: center;"> </td>
+									<td style="text-align: center;"> </td>
+									<td style="text-align: center;"> </td>
+
+								</tr>
+								</tbody>
+							</table>
+
+							<script type="text/javascript">
+								function requestMessage()
+								{   $("#tab22").html("");
+									$.ajax({
+										url: "http://localhost:8080/ssm_war_exploded/manager/MessageShow.d",
+										type: "post",
+										dataType: "json",
+										contentType:"application/json;charset=utf-8",
+										success: function(data){
+											/*这个方法里是ajax发送请求成功之后执行的代码*/
+											show22(data);//我们仅做数据展示
+										},
+										error: function(msg){
+											alert("ajax连接异常："+msg);
+										}
+									});
+								}
+								function show22(data)
+								{
+									var str = "";//定义用于拼接的字符串
+									for (var i = 0; i < data.length; i++)
+									{
+
+										str = "<tr><td>" + data[i].repairId + "</td>" +
+												"<td>"+ data[i].clientInfo.clientId+ "</td>" +
+												"<td>"+ data[i].workerInfo.workerId+ "</td>" +
+												"<td>"+ data[i].requestTime+ "</td>" +
+												"<td>"+ data[i].reReview+ "</td>" +
+												"<td>"+ data[i].repairGrade+ "</td>" +
+												/*	"<td>" + data[i].repairInfos.requestTime + "</td>" +*/
+												"</td></tr>";
+										$("#tab22").append(str);
+
+									}
+								}
+							</script>
+
+							</table>
+							<div class="form-group" align="right">
+								<a href="#" id="pageSizeSet"> 设置  </a>
+								<a id="sjzl"></a>
+								<a href="#" id="firstpage"> 首页 </a>
+								<a href="#" id="btn2"> 上一页 </a>
+								<a href="#" id="btn3"> 下一页 </a>
+								<a href="#" id="btn4"> 尾页 </a>
+								<a> 转到 </a>
+								<input id="changePage" class="input" type="text" size="1" maxlength="4"/>
+								<a> 页 </a>
+								<a  href="#" id="btn5"> 跳转</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<!-- .tm-content -->
+
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div id="preload-01"></div>
+	<div id="preload-02"></div>
+	<div id="preload-03"></div>
+	<div id="preload-04"></div>
+	<!-- 警告弹窗 -->
+	<script type="text/javascript" src="../js/sweet-alert.min.js"></script>
+	<script src="../js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.magnific-popup.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.backstretch.min.js"></script>
+	<script type="text/javascript" src="../slick/slick.min.js"></script> <!-- Slick Carousel -->
+	<script>
+		var sidebarVisible = false;
+		var currentPageID = "#tm-section-1";
+
+		// Setup Carousel
+		function setupCarousel() {
+
+			// If current page isn't Carousel page, don't do anything.
+			if ($('#tm-section-2').css('display') == "none") {} else { // If current page is Carousel page, set up the Carousel.
+
+				var slider = $('.tm-img-slider');
+				var windowWidth = $(window).width();
+
+				if (slider.hasClass('slick-initialized')) {
+					slider.slick('destroy');
+				}
+
+				if (windowWidth < 640) {
+					slider.slick({
+						dots: true,
+						infinite: false,
+						slidesToShow: 1,
+						slidesToScroll: 1
+					});
+				} else if (windowWidth < 992) {
+					slider.slick({
+						dots: true,
+						infinite: false,
+						slidesToShow: 2,
+						slidesToScroll: 1
+					});
+				} else {
+					// Slick carousel
+					slider.slick({
+						dots: true,
+						infinite: false,
+						slidesToShow: 3,
+						slidesToScroll: 2
+					});
+				}
+
+				// Init Magnific Popup
+				$('.tm-img-slider').magnificPopup({
+					delegate: 'a', // child items selector, by clicking on it popup will open
+					type: 'image',
+					gallery: {
+						enabled: true
+					}
+					// other options
+				});
+			}
+		}
+
+		// Setup Nav
+		function setupNav() {
+			// Add Event Listener to each Nav item
+			$(".tm-main-nav a").click(function(e) {
+				e.preventDefault();
+
+				var currentNavItem = $(this);
+				changePage(currentNavItem);
+
+				setupCarousel();
+				setupFooter();
+
+				// Hide the nav on mobile
+				$("#tmSideBar").removeClass("show");
+			});
+		}
+
+		function changePage(currentNavItem) {
+			// Update Nav items
+			$(".tm-main-nav a").removeClass("active");
+			currentNavItem.addClass("active");
+
+			$(currentPageID).hide();
+
+			// Show current page
+			currentPageID = currentNavItem.data("page");
+			$(currentPageID).fadeIn(1000);
+
+			// Change background image
+			var bgImg = currentNavItem.data("bgImg");
+			$.backstretch("../img/" + bgImg);
+
+		}
+
+		// Setup Nav Toggle Button
+		function setupNavToggle() {
+
+			$("#tmMainNavToggle").on("click", function() {
+				$(".sidebar").toggleClass("show");
+			});
+		}
+
+		// If there is enough room, stick the footer at the bottom of page content.
+		// If not, place it after the page content
+		function setupFooter() {
+
+			var padding = 100;
+			var footerPadding = 40;
+			var mainContent = $("section" + currentPageID);
+			var mainContentHeight = mainContent.outerHeight(true);
+			var footer = $(".footer-link");
+			var footerHeight = footer.outerHeight(true);
+			var totalPageHeight = mainContentHeight + footerHeight + footerPadding + padding;
+			var windowHeight = $(window).height();
+
+			if (totalPageHeight > windowHeight) {
+				$(".tm-content").css("margin-bottom", footerHeight + footerPadding + "px");
+				footer.css("bottom", footerHeight + "px");
+			} else {
+				$(".tm-content").css("margin-bottom", "0");
+				footer.css("bottom", "20px");
+			}
+		}
+
+		// Everything is loaded including images.
+		$(window).on("load", function() {
+
+			// Render the page on modern browser only.
+			if (renderPage) {
+				// Remove loader
+				$('body').addClass('loaded');
+
+				// Page transition
+				var allPages = $(".tm-section");
+
+				// Handle click of "Continue", which changes to next page
+				// The link contains data-nav-link attribute, which holds the nav item ID
+				// Nav item ID is then used to access and trigger click on the corresponding nav item
+				var linkToAnotherPage = $("a.tm-btn[data-nav-link]");
+
+				if (linkToAnotherPage != null) {
+
+					linkToAnotherPage.on("click", function() {
+						var navItemToHighlight = linkToAnotherPage.data("navLink");
+						$("a" + navItemToHighlight).click();
+					});
+				}
+
+				// Hide all pages
+				allPages.hide();
+
+				$("#tm-section-1").fadeIn();
+
+				// Set up background first page
+				var bgImg = $("#tmNavLink1").data("bgImg");
+
+				$.backstretch("../img/" + bgImg, {
+					fade: 500
+				});
+
+				// Setup Carousel, Nav, and Nav Toggle
+				setupCarousel();
+				setupNav();
+				setupNavToggle();
+				setupFooter();
+
+				// Resize Carousel upon window resize
+				$(window).resize(function() {
+					setupCarousel();
+					setupFooter();
+				});
+			}
+		});
+	</script>
+</div>
+</body>
 </html>
