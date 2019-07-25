@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqjtu.wlw.dao.FaceRecordDao">
+	<!-- 设置已知访客记录返回 -->
+	<resultMap type="FaceRecord" id="kmap">
+		<id column="known_id" property="faceRecordId"/>
+		<result column="known_name" property="faceRecordName" />
+		<result column="known_url" property="faceRecordUrl" />
+		<result column="lock_id" property="lockId"/>
+	</resultMap>
+
+	<!--设置陌生访客记录返回-->
+	<resultMap type="FaceRecord" id="umap">
+		<id column="unknown_id" property="faceRecordId" />
+		<result column="unknown_name" property="faceRecordName" />
+		<result column="unknown_url" property="faceRecordUrl" />
+		<result column="lock_id" property="lockId"/>
+	</resultMap>
+
+	<!--根据lock_id查询所有已知访客记录-->
+	<select id="getKnownFaceRecords" parameterType="FaceRecord" resultType="List" resultMap="kmap">
+		select * from known_face
+		where lock_id=#{lockId}
+	</select>
+	<!--根据known_name模糊查询部分访客记录-->
+	<select id="getKnownFaceRecordByName" parameterType="FaceRecord" resultType="List" resultMap="kmap">
+		select * from known_face
+		<where>
+			<if test="known_name != null">
+				lock_id=#{lock_id} and known_name like #{faceRecordName}
+			</if>
+		</where>
+	</select>
+	<!--根据lock_id查询所有未知访客记录-->
+	<select id="getUnKnownFaceRecords" parameterType="FaceRecord"
+			resultType="List" resultMap="umap">
+		select * from unknown_face
+		where lock_id=#{lockId}
+		<!--
+		<where>
+			<if test="faceRecordName != null and faceRecordName !=''">
+				unknown_name=#{faceRecordName}
+			</if>
+		</where>
+		-->
+	</select>
+	<!--根据unknown_name模糊查询部分陌生访客记录-->
+	<select id="getUnKnownRecordByName" parameterType="FaceRecord" resultType="List" resultMap="umap">
+		select * from unknown_face
+		<where>
+			<if test="unknown_name != null">
+				lock_id=#{lock_id} and unknown_name like #{faceRecordName}
+			</if>
+		</where>
+	</select>
+</mapper>

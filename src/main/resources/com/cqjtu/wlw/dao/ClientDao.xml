@@ -21,11 +21,55 @@
     <!-- 配置updateStudentInfo方法 -->
     <update id="updateClientInfo" parameterType="ClientInfo">
 		update client_info
-		set client_name = #{clientName},client_password=#{clientPassword},client_sex = #{clientSex},client_phone = #{clientPhone},
-		client_photo=#{clientPhoto},client_addr = #{clientAddr},lock_id= #{lock_id}
+		set client_name = #{clientName},client_sex = #{clientSex},client_phone = #{clientPhone},client_addr = #{clientAddr}
 		where client_id = #{clientId}
 	</update>
-
+    <update id="updateClientLock" parameterType="ClientInfo">
+		update client_info
+		set lock_id= #{lock_id}
+		where client_id = #{clientId}
+	</update>
+    <update id="updateClientPwd" parameterType="ClientInfo">
+		update client_info
+		set client_password=#{clientPassword}
+		where client_id = #{clientId}
+	</update>
+    <resultMap type="RepairInfo" id="rmap">
+        <!-- type:对应的实体类 -->
+        <id column="repair_id" property="repairId"/>
+        <!-- column:对应是数据库中的名字,property属性对应的是实体类中的属性名 -->
+        <result column="request_time" property="requestTime" /><!--基本属性-->
+        <result column="start_time" property="startTime" />
+        <result column="repair_detail" property="repairDetail" />
+        <result column="repair_grade" property="repairGrade" />
+        <!--外键client_id-->
+        <association property="clientInfo" javaType="clientInfo">
+            <!-- property="school"定义在是bean中RepairInfo的外键 -->
+            <!-- javaType="schoolInfo"映射外键关联的表，与bean中名称相同 -->
+            <id column="client_id" property="clientId"/><!-- 主键 -->
+            <result column="client_name" property="clientName"/><!-- 非主键 -->
+            <result column="client_password" property="clientPassword"/>
+            <result column="client_sex" property="clientSex"/><!-- 非主键 -->
+            <result column="client_addr" property="clientAddr"/><!-- 非主键 -->
+            <result column="client_phone" property="clientPhone"/><!-- 非主键 -->
+            <result column="client_photo" property="clientPhoto"/><!-- 非主键 -->
+            <result column="lock_id" property="lockId"/><!-- 非主键 -->
+        </association>
+        <!--外键worker_id-->
+        <association property="workerInfo" javaType="workerInfo">
+            <!-- property="school"定义在是bean中RepairInfo的外键 -->
+            <!-- javaType="schoolInfo"映射外键关联的表，与bean中名称相同 -->
+            <id column="worker_id" property="workerId"/>
+            <!-- column:对应是数据库中的名字,property属性对应的是实体类中的属性名 -->
+            <result column="worker_name" property="workerName" />
+            <result column="worker_password" property="workerPassword" />
+            <result column="worker_sex" property="workerSex" />
+            <result column="worker_phone" property="workerPhone" />
+            <result column="worker_addr" property="workerAddr" />
+            <result column="worker_area" property="workerArea" />
+            <result column="worker_grade" property="workerGrade" />
+        </association>
+    </resultMap>
 
     <resultMap type="ClientInfo" id="cmap">
         <!-- type:对应的实体类 -->
@@ -35,25 +79,60 @@
         <result column="client_password" property="clientPassword" />
         <result column="client_sex" property="clientSex" />
         <result column="client_addr" property="clientAddr" />
+        <result column="client_phone" property="clientPhone" />
+        <!--作为lock_info外键lock_id,一对一-->
         <association property="lockInfo" javaType="lockInfo">
             <!-- property="school"定义在是bean中TeacherInfo的外键 -->
             <!-- javaType="schoolInfo"映射外键关联的表，与bean中名称相同 -->
             <id column="lock_id" property="lockId"/><!-- 主键 -->
             <result column="lock_type" property="lockType"/><!-- 非主键 -->
         </association>
-
+        <!--作为family_info表外键client_id,一对多-->
+        <collection property="familyInfos" ofType="FamilyInfo">
+            <id column="member_id" property="memberId"/>
+            <result column="member_name" property="memberName"/>
+            <result column="member_photo" property="memberPhoto" />
+        </collection>
+        <!--作为repair表外键client_id,一对多-->
+        <collection property="repairInfos" ofType="repairInfo">
+            <id column="repair_id" property="repairId"/>
+            <!-- column:对应是数据库中的名字,property属性对应的是实体类中的属性名 -->
+            <result column="request_time" property="requestTime" /><!--基本属性-->
+            <result column="start_time" property="startTime" />
+            <result column="repair_detail" property="repairDetail" />
+            <result column="repair_grade" property="repairGrade" />
+        </collection>
     </resultMap>
-
+    <select id="getClientByClientId" parameterType="ClientInfo" resultMap="cmap">
+        select * from client_info
+        where client_id=#{clientId}
+    </select>
     <select id="getClientInfoById" parameterType="ClientInfo" resultMap="cmap">
-		select * from client_info where client_id=#{clientId}
+		select * from client_info t1,family_info t2,repair t3
+		where t1.client_id = t2.client_id and t1.client_id=t3.client_id and t1.client_id=#{clientId}
 	</select>
 
-    <!-- <select id="getStudentInfos" resultType="List" resultMap="stumap">
-        select * from student_info; </select> -->
+    <select id="getRepairInfoByAddr" parameterType="ClientInfo"
+            resultType="List" resultMap="rmap">
+        select * from repair t1
+        left outer join client_info t2<!--内连接2张表-->
+        on t1.client_id = t2.client_id
+        left outer join worker_info t3
+        on t1.worker_id=t3.worker_id
+        <where>
+            <if test="clientAddr != null and clientAddr !=''">
+                and client_addr=#{clientAddr}
+            </if>
+        </where>
+    </select>
 
     <select id="getClientInfos" parameterType="ClientInfo"
             resultType="List" resultMap="cmap">
-        select * from client_info<!-- 只用姓名和电话查询 -->
+        select * from client_info t1<!-- 只用姓名和电话查询 -->
+            inner join family_info t2<!--内连接2张表-->
+            on t1.client_id = t2.client_id
+            inner join repair t3
+            on t1.client_id = t3.client_id
         <where>
             <if test="clientName != null and clientName !=''">
                 and client_name like #{clientName}
@@ -63,5 +142,29 @@
             </if>
         </where>
     </select>
+
+    <select id="getRepairInfos" parameterType="ClientInfo"
+            resultType="List" resultMap="cmap">
+        select * from client_info<!-- 只用姓名和电话查询 -->
+        <where>
+            <if test="clientAddr != null and clientAddr !=''">
+                and client_addr like #{clientAddr}
+            </if>
+        </where>
+    </select>
+
+    <select id="getClients"  resultMap="cmap">
+        select * from client_info t1
+            inner join family_info t2<!--内连接2张表-->
+                on t1.client_id = t2.client_id
+            inner join repair t3
+                on t1.client_id = t3.client_id
+	</select>
+
+    <!--select id="getClients"  resultMap="cmap">
+		select * from client_info t1
+		left outer join family_info t2
+		on t1.client_id = t2.client_id
+	</select-->
 
 </mapper>
